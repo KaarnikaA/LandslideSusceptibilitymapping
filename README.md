@@ -79,5 +79,4 @@ The model achieved the following performance metrics on the test set:
 - Deep Learning Toolbox
 - Mapping Toolbox
 
-## Acknowledgments
-This project was completed as part of [Course Name] at [University Name]. Special thanks to [Professor/Instructor Name] for guidance and support throughout the implementation.
+
