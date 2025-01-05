@@ -17,7 +17,7 @@ The model uses 12 different geospatial features stored as GeoTIFF files:
 10. Profile curvature
 11. Relative relief
 12. Slope
-![](https://i.imgur.com/pZGWbSX.png)
+![](images/inputs.jpg)
 
 
 Each feature is automatically preprocessed by:
@@ -52,7 +52,7 @@ The neural network implementation uses MATLAB's Deep Learning Toolbox with the f
 
 ## Results
 The model achieved the following performance metrics on the test set:
-- ![AUC- ROC]()
+- ![AUC- ROC](images/AUC-ROC.jpg)
 
 ## Output Files
 1. `landslide_susceptibility_map.tif`: GeoTIFF file containing the predicted susceptibility values
