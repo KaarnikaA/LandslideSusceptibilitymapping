@@ -17,6 +17,8 @@ The model uses 12 different geospatial features stored as GeoTIFF files:
 10. Profile curvature
 11. Relative relief
 12. Slope
+![](https://i.imgur.com/pZGWbSX.png)
+
 
 Each feature is automatically preprocessed by:
 - Resampling to match the reference landslide inventory dimensions
@@ -50,11 +52,7 @@ The neural network implementation uses MATLAB's Deep Learning Toolbox with the f
 
 ## Results
 The model achieved the following performance metrics on the test set:
-- Accuracy: [Insert your actual accuracy]
-- Precision: [Insert your actual precision]
-- Recall: [Insert your actual recall]
-- F1 Score: [Insert your actual F1 score]
-- AUC-ROC: [Insert your actual AUC]
+- ![AUC- ROC]()
 
 ## Output Files
 1. `landslide_susceptibility_map.tif`: GeoTIFF file containing the predicted susceptibility values
@@ -79,7 +77,6 @@ The model achieved the following performance metrics on the test set:
 ## Dependencies
 - MATLAB R2019b or later
 - Deep Learning Toolbox
-- Parallel Computing Toolbox (optional)
 - Mapping Toolbox
 
 ## Acknowledgments
