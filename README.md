@@ -17,7 +17,7 @@ The model uses 12 different geospatial features stored as GeoTIFF files:
 10. Profile curvature
 11. Relative relief
 12. Slope
-![](images/inputs.jpg)
+![](images/inputs.png)
 
 
 Each feature is automatically preprocessed by:
