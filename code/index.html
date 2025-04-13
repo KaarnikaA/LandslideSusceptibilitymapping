@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landslide Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        input[type="file"] {
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Landslide Prediction</h1>
+    <div class="container">
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="files" multiple accept=".tif" required>
+            <button type="submit">Upload and Predict</button>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+<script>
+    document.getElementById("uploadForm").addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const formData = new FormData();
+        const files = document.getElementById("fileInput").files;
+
+        for (let i = 0; i < files.length; i++) {
+            formData.append("files", files[i]);
+        }
+
+        try {
+            const response = await fetch("http://127.0.0.1:8001/predict/", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error("Error during prediction");
+            }
+
+            const blob = await response.blob();
+
+            // Create a downloadable link for the TIFF file
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "susceptibility_map.tif";
+            link.textContent = "Download Landslide Susceptibility Map";
+            link.style.display = "inline-block";
+            link.style.marginTop = "10px";
+            link.style.color = "#007bff";
+            link.style.textDecoration = "underline";
+
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = ""; // Clear previous results
+            resultDiv.appendChild(link);
+        } catch (error) {
+            document.getElementById("result").textContent = `Error: ${error.message}`;
+        }
+    });
+</script>
+
+</body>
+</html>
